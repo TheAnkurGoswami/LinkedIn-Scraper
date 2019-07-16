@@ -28,6 +28,6 @@ page_link='https://www.linkedin.com/mynetwork/invite-connect/connections/'
 page_users_links=get_page_users_links(driver,page_link)
 user_data=get_page_users_data(driver,page_users_links)
 
-pd.Dataframe(user_data)
+pd.DataFrame(user_data).to_excel('./user data.xlsx')
 
 driver.quit()

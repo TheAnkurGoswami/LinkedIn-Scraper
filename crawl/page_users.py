@@ -2,9 +2,8 @@ import numpy as np
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.keys import Keys
 import time
+from crawl.user_info_grabber import individual_user_info
 
-
-from ..user_info_grabber import individual_user_info
 def get_page_users_links(driver,page_link):
     driver.get(page_link)
     page=BeautifulSoup(driver.page_source,'html.parser')
@@ -30,9 +29,9 @@ def get_page_users_links(driver,page_link):
     return set(total)
     
     
-def get_page_users_data(users_links_list):
+def get_page_users_data(driver,users_links_list):
     user_details=[]
     for i in users_links_list:
-        user_details.append(individual_user_info(i))
+        user_details.append(individual_user_info(driver,i))
         
     return np.array(user_details)

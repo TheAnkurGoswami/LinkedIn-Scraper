@@ -30,7 +30,7 @@ def get_page_users_links(driver,page_link):
     return set(total)
     
     
-def get_page_user_data(users_links_list):
+def get_page_users_data(users_links_list):
     user_details=[]
     for i in users_links_list:
         user_details.append(individual_user_info(i))

@@ -1,0 +1,4 @@
+'username', (0, 19)
+'password', (512, 19)
+'submit', (1024, 89)
+'user_contact_info', (1536, 25)

@@ -32,7 +32,7 @@ def get_page_users_links(driver,page_link):
 def get_page_users_data(driver,users_links_list):
     user_details=[]
     length=len(users_links_list)
-    for i in length:
+    for i in range(length):
         user_details.append(individual_user_info(driver,users_links_list[i]))
         print("{:0.2f}% Scraped!!".format((i/len(users_links_list))*100))
     print("Scraped {} users.".format(len(users_links_list)))

@@ -24,10 +24,10 @@ driver.get('https://www.linkedin.com/uas/login')
 
 driver=login(driver)
 page_link='https://www.linkedin.com/mynetwork/invite-connect/connections/'
+
 page_users_links=get_page_users_links(driver,page_link)
-
-len(page_users_links)
-
 user_data=get_page_users_data(driver,page_users_links)
+
+pd.Dataframe(user_data)
 
 driver.quit()

@@ -1,7 +1,7 @@
 from getpass import getpass
 import shelve
 
-file=shelve.open('./data/css_selectors')
+file=shelve.open('./data/css_selectors/css_selectors')
 
 def login(driver):
     #LinkedIn account details

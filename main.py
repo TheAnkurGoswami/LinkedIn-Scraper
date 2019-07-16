@@ -14,7 +14,6 @@ choice=input('Keep Working Hidden? (y/n)\n').lower()
 if choice=='y':
     opt=webdriver.ChromeOptions()
     opt.add_argument('headless')
-
 elif choice=='n':
     opt=None
      

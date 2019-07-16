@@ -26,7 +26,7 @@ def get_page_users_links(driver,page_link):
             time.sleep(5)
             page=BeautifulSoup(driver.page_source,'html.parser')
             
-    return set(total)
+    return list(set(total))
     
     
 def get_page_users_data(driver,users_links_list):
@@ -34,6 +34,7 @@ def get_page_users_data(driver,users_links_list):
     length=len(users_links_list)
     for i in range(length):
         user_details.append(individual_user_info(driver,users_links_list[i]))
-        print("{:0.2f}% Scraped!!".format((i/len(users_links_list))*100))
-    print("Scraped {} users.".format(len(users_links_list)))
+        print("{:0.2f}% Scraped!!".format(((i+1)/len(users_links_list))*100))
+        
+    print("Scraped {} users.".format(length))
     return np.array(user_details)

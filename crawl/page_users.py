@@ -1,8 +1,7 @@
 import numpy as np
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.keys import Keys
-import os
-print(os.getcwd())
+import time
 
 
 from ..user_info_grabber import individual_user_info

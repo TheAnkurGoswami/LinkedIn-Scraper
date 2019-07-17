@@ -1,14 +1,11 @@
-import requests
-from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import numpy as np
 import pandas as pd
-import shelve
 
+import shelve
 from auth.login import login
 from crawl.page_users import get_page_users_links
 from crawl.page_users import get_page_users_data
+
 
 choice=input('Keep Working Hidden? (y/n)\n').lower()
 if choice=='y':
@@ -16,18 +13,30 @@ if choice=='y':
     opt.add_argument('headless')
 elif choice=='n':
     opt=None
-     
-    
 driver=webdriver.Chrome("./driver/chromedriver.exe",chrome_options=opt)
 
-driver.get('https://www.linkedin.com/uas/login')
 
+links_file=shelve.open('./data/links/links')
+
+    
+
+#Logging into LinkedIn account
+driver.get(links_file['login'])
+print("login called")
 driver=login(driver)
-page_link='https://www.linkedin.com/mynetwork/invite-connect/connections/'
 
-page_users_links=get_page_users_links(driver,page_link)
-user_data=get_page_users_data(driver,page_users_links)
+print("""
+Scrape:
+     1. Your Connections details
+     2. Company details (followed by you)
+     3. Company Employees data (followed by you)
 
-pd.DataFrame(user_data,columns=['Name','Desigation','Location','About','Phone no','Email','Address','Profile link']).to_excel('./user data.xlsx')
+""")
+choice=int(input())
 
+if choice==1:    
+    page_users_links=get_page_users_links(driver,links_file['connections'])
+    user_data=get_page_users_data(driver,page_users_links)
+    pd.DataFrame(user_data).to_excel('./Connections Data.xlsx')
+    
 driver.quit()

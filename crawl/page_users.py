@@ -14,7 +14,7 @@ def get_page_users_links(driver,page_link):
     while 1:
         
         temp=[]
-        for i in page.findAll('a',attrs={'data-control-name':'connection_profile'}):
+        for i in page.findAll('a',{'data-control-name':'connection_profile'}):
             temp.append('https://www.linkedin.com'+i['href'])
         if set(total)==set(temp):
             break
